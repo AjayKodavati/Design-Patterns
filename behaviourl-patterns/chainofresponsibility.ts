@@ -1,3 +1,23 @@
+/**
+ * Chain of Responsibility Pattern: The request is passed along a chain of handlers, each
+ * of which can either handle the request or pass it to the next handler in the chain.
+ */
+
+/**
+ * Participants of the Chain of Responsibility Pattern:
+ * - Handler: The interface that defines the method for handling requests and setting the next handler.
+ * - ConcreteHandler: The classes that implement the Handler interface and handle specific requests.
+ * - Client: The code that interacts with the Handler interface to send requests.
+ */
+
+/**
+ * Behavioral design patterns are concerned with algorithms and the assignment of responsibilities between objects.
+ * they use composition to object delegation to achieve flexibility and reusability.
+ * All the behavioral patterns compose the objects and use dynamic dispatch by implementing the same interface.
+ * runtime polymorphism is used to dynamically change the behavior of the objects.
+ */
+
+
 interface Handler<Request = string, Result = string> {
     setNext(handler: Handler<Request, Result>): Handler<Request, Result>;
 
@@ -50,7 +70,7 @@ class DogHandler extends AbstractHandler {
     }
 }
 
-function clientCode(handler: Handler) {
+function client(handler: Handler) {
     const foods = ['Nut', 'Banana', 'Cup of coffee'];
 
     for (const food of foods) {
@@ -77,8 +97,8 @@ monkey.setNext(Squirrel).setNext(dog)
  * first one in the chain.
  */
 console.log('Chain: Monkey > Squirrel > Dog\n');
-clientCode(monkey);
+client(monkey);
 console.log('');
 
 console.log('Subchain: Squirrel > Dog\n');
-clientCode(Squirrel);
+client(Squirrel);
